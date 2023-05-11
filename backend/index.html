@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello!</title>
+   </head>
+   <script src="/socket.io/socket.io.js"></script>
+   <body>
+        <input type="text" class="input" />
+        <button 
+            id="content" 
+            onclick="handleText()"
+        >
+            Content
+        </button>
+        <div class="messages"></div>
+   </body>
+   <script>
+    const socket = io();
+
+    const handleText = () => {
+        const input = document.querySelector('input');
+        socket.emit('chat', input.value);
+    }
+
+    socket.on('message', message => {
+        const messages = document.querySelector('.messages');
+        messages.innerHTML = message.map(msg => msg).join(' ');
+    });
+   </script>
+</html>
