@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { Message } from "../../entity/Message";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -9,7 +10,7 @@ export const AppDataSource = new DataSource({
     database: "socket",
     synchronize: true,
     logging: false,
-    entities: [],
+    entities: [Message],
     migrations: [],
     subscribers: [],
 })

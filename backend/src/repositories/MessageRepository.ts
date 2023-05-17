@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { Message } from "../entity/Message";
-import { AppDataSource } from "../typeorm";
+import { AppDataSource } from "../app/typeorm";
 
 interface ICreateMessage {
     message: string;
@@ -13,6 +13,10 @@ export default class MessageRepository {
         this.ormRepository = AppDataSource.getRepository(Message);
     }
 
+    public async save(message: Message): Promise<Message> {
+        return this.ormRepository.save(message);
+    }
+
     public async find(): Promise<Message[]> {
         return this.ormRepository.find();
     }
@@ -23,5 +27,9 @@ export default class MessageRepository {
 
     public async create(data: ICreateMessage): Promise<Message> {
         return this.ormRepository.create(data);
+    }
+
+    public async remove(message: Message): Promise<Message> {
+        return this.ormRepository.remove(message);
     }
 }
