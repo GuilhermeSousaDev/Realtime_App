@@ -34,7 +34,7 @@ function App() {
           }} 
         >
           <h1>{ message.message }</h1>
-          <p onClick={() => handleRemoveMessage(message.id)}>X</p>
+          <button onClick={() => handleRemoveMessage(message.id)}>X</button>
         </div>
       ))}
     </>
